@@ -19,11 +19,11 @@ class RailsBootstrap::BadgeComponent < ApplicationComponent
   private
     
     def pill_class
-      @pill ? " badge-pill" : ""
+      pill ? " badge-pill" : ""
     end 
 
     def variation_class
-      " badge-#{@variation}"
+      " badge-#{variation}"
     end
     
     attr_reader :variation, :pill
