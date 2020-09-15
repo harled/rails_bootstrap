@@ -9,10 +9,16 @@ class RailsBootstrap::BadgeComponent < ApplicationComponent
   validates :pill, inclusion: { in: [true, false] }
 
   def initialize(variation: "primary", pill: false)
-    @variation = "badge-#{variation}"
-    @pill = pill ? "badge-pill" : ""
+    @variation = variation
+    @pill = pill
   end
 
+  def styles
+    pill_class = "badge-pill" unless !pill
+    variation_class = "badge-#{variation}"
+    style = "badge #{pill_class} #{variation_class}"
+  end
+  
   private 
     
     attr_reader :variation, :pill
