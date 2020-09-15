@@ -14,11 +14,17 @@ class RailsBootstrap::BadgeComponent < ApplicationComponent
   end
 
   def styles
-    pill_class = "badge-pill" unless !pill
-    variation_class = "badge-#{variation}"
-    style = "badge #{pill_class} #{variation_class}"
+    "badge #{pill_class} #{variation_class}"
   end
-  
+
+  def pill_class
+    @pill ? "badge-pill" : ""
+  end 
+
+  def variation_class
+    "badge-#{@variation}"
+  end
+
   private 
     
     attr_reader :variation, :pill
