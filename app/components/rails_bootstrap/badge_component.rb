@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class RailsBootstrap::BadgeComponent < ApplicationComponent
-  # rename variant to variation 
-  # variant is a keyword in rails
+
   VARIATIONS = ["primary", "secondary", "success", "danger", "warning", "light", "info", "dark"].freeze
 
   validates :variation, inclusion: { in: VARIATIONS }
@@ -14,18 +13,19 @@ class RailsBootstrap::BadgeComponent < ApplicationComponent
   end
 
   def styles
-    "badge #{pill_class} #{variation_class}"
+    "badge" + pill_class + variation_class
   end
 
-  def pill_class
-    @pill ? "badge-pill" : ""
-  end 
+  private
+    
+    def pill_class
+      @pill ? " badge-pill" : ""
+    end 
 
-  def variation_class
-    "badge-#{@variation}"
-  end
-
-  private 
+    def variation_class
+      " badge-#{@variation}"
+    end
     
     attr_reader :variation, :pill
+
 end
