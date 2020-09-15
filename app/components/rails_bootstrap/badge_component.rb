@@ -3,10 +3,9 @@
 class RailsBootstrap::BadgeComponent < ApplicationComponent
   
   VARIRANTS = ["primary", "secondary", "success", "danger", "warning", "light", "info", "dark"].freeze
-  PILLS = [true, false].freeze
 
   validates :variant, inclusion: { in: VARIRANTS }
-  validates :pill, inclusion: { in: PILLS }
+  validates :pill, inclusion: { in: [true, false] }
 
   def initialize(variant: "primary", pill: false)
     @variant = variant
