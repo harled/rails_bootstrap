@@ -7,7 +7,7 @@ class RailsBootstrap::BadgeComponent < ApplicationComponent
   validates :variation, inclusion: { in: VARIATIONS }
   validates :pill, inclusion: { in: [true, false] }
 
-  def initialize(variation: "primary", pill: false, **option)
+  def initialize(variation: "primary", pill: false, **options)
     @variation = variation
     @pill = pill
 
