@@ -7,13 +7,17 @@ class RailsBootstrap::BadgeComponent < ApplicationComponent
   validates :variation, inclusion: { in: VARIATIONS }
   validates :pill, inclusion: { in: [true, false] }
 
-  def initialize(variation: "primary", pill: false)
+  def initialize(variation: "primary", pill: false, **options)
     @variation = variation
     @pill = pill
+
+    options.tap do |options|
+      @class_name = options.delete(:class_name)   || ""
+    end
   end
 
   def styles
-    "badge" + pill_class + variation_class
+    class_name + "badge" + pill_class + variation_class
   end
 
   private
@@ -26,6 +30,6 @@ class RailsBootstrap::BadgeComponent < ApplicationComponent
       " badge-#{variation}"
     end
     
-    attr_reader :variation, :pill
+    attr_reader :variation, :pill, :class_name
 
 end
